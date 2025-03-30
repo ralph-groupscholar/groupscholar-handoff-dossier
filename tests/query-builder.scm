@@ -1,11 +1,10 @@
 (use-modules (ice-9 ftw)
              (srfi srfi-64))
 
-(define (add-src-path)
-  (let ((test-dir (dirname (canonicalize-path (current-filename)))))
-    (add-to-load-path (string-append test-dir "/../src"))))
-
 (eval-when (compile load eval)
+  (define (add-src-path)
+    (let ((test-dir (dirname (canonicalize-path (current-filename)))))
+      (add-to-load-path (string-append test-dir "/../src"))))
   (add-src-path))
 
 (use-modules (handoff))
